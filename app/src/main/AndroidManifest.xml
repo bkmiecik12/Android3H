@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".Szczegoly">
         </activity>
+        <activity android:name=".Lista3">
+        </activity>
     </application>
 
 </manifest>

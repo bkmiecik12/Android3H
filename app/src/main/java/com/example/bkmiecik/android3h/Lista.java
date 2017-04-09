@@ -1,14 +1,12 @@
 package com.example.bkmiecik.android3h;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.*;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -21,7 +19,7 @@ public class Lista extends AppCompatActivity implements AdapterView.OnItemClickL
     ListView lista1;
 
     List<String> nazwy = new ArrayList<>();
-    List<Film> filmy = new ArrayList<>();
+    public static List<Film> filmy = new ArrayList<>();
 
     AlertDialog alertDialog;
 
@@ -33,7 +31,16 @@ public class Lista extends AppCompatActivity implements AdapterView.OnItemClickL
 
         lista1 = (ListView)findViewById(R.id.lista1);
 
-        System.out.print("TU JESTEM0000");
+        Button drugaLista = (Button) findViewById(R.id.druga);
+        drugaLista.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Lista.this,Lista3.class);
+                startActivity(intent);
+            }
+        });
+
+        //System.out.print("TU JESTEM0000");
 
         try {
             BtO(plik);
@@ -52,6 +59,8 @@ public class Lista extends AppCompatActivity implements AdapterView.OnItemClickL
 
         FileInputStream fin=openFileInput(plik);
         //InputStreamReader InputRead= new InputStreamReader(fileIn);
+        filmy.clear();
+        nazwy.clear();
         int c;
         String temp="";
         while( (c = fin.read()) != -1){
@@ -72,7 +81,7 @@ public class Lista extends AppCompatActivity implements AdapterView.OnItemClickL
             //}
         }
         scanner.close();
-        Toast.makeText(Lista.this,temp,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(Lista.this,temp,Toast.LENGTH_SHORT).show();
     }
 
 
@@ -87,7 +96,6 @@ public class Lista extends AppCompatActivity implements AdapterView.OnItemClickL
                 .setMessage(string)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        // continue with delete
                     }
                 })
                 .setIcon(android.R.drawable.ic_menu_more)

@@ -4,11 +4,11 @@ package com.example.bkmiecik.android3h;
  * Created by bkmiecik on 08.04.17.
  */
 public class Film {
-    String tytul;
-    String rezyser;
-    double ocena;
-    String kategoria;
-    String rok;
+    public String tytul;
+    public String rezyser;
+    public double ocena;
+    public String kategoria;
+    public String rok;
 
     public Film(String tytul, String rezyser, double ocena, String kategoria, String rok) {
         this.tytul = tytul;

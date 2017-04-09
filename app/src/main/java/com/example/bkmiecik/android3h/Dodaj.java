@@ -17,7 +17,7 @@ public class Dodaj extends AppCompatActivity {
 
     FileOutputStream os;
 
-    String[] kat = {"Inny", "Thriller", "Komedia", "Dramat", "Sci-Fi", "Animowany"};
+    String[] kat = {"Polski","Zagraniczny"};
 
     String plik = "dane.txt";
 
@@ -58,7 +58,7 @@ public class Dodaj extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                Toast.makeText(Dodaj.this, data, Toast.LENGTH_SHORT).show();
+                Toast.makeText(Dodaj.this, "Zapisano", Toast.LENGTH_SHORT).show();
                 eTytul.setText("");
                 eRezyser.setText("");
                 eRok.setText("");
