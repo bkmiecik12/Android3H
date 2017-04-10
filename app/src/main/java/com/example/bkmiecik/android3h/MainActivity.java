@@ -1,10 +1,12 @@
 package com.example.bkmiecik.android3h;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,6 +14,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences sett = getSharedPreferences("ustawienia",MODE_MULTI_PROCESS);
+        String message = sett.getString("komunikat","Dzień dobry!");
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
 
         Button dodaj = (Button)findViewById(R.id.dodaj);
         dodaj.setOnClickListener(new View.OnClickListener() {
@@ -39,5 +45,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
     }
 }
