@@ -28,7 +28,6 @@ public class Ustawienia extends AppCompatActivity {
 
 
     Toolbar pasek;
-    Toolbar tb1;
 
     int k=R.color.colorPrimaryDark;
 
@@ -41,7 +40,6 @@ public class Ustawienia extends AppCompatActivity {
         setContentView(R.layout.activity_ustawienia);
 
         pasek = (Toolbar) findViewById(R.id.my_toolbar);
-        tb1 = (Toolbar) findViewById(R.id.toolbar_lista3);
         red = (SeekBar) findViewById(R.id.red);
         green = (SeekBar) findViewById(R.id.green);
         blue = (SeekBar) findViewById(R.id.blue);
@@ -67,6 +65,7 @@ public class Ustawienia extends AppCompatActivity {
         komunikat = dane.getString("komunikat",komunikat);
 
         pasek.setBackgroundColor(Color.rgb(r,g,b));
+
 
         red.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -126,8 +125,8 @@ public class Ustawienia extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onPause() {
+        super.onPause();
 
         SharedPreferences.Editor editor = dane.edit();
         editor.putInt("r",r);

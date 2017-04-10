@@ -1,7 +1,10 @@
 package com.example.bkmiecik.android3h;
 
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.*;
 
@@ -14,6 +17,9 @@ public class Dodaj extends AppCompatActivity {
     double ocena = 0;
     String rok = "";
     String kategoria = "";
+
+    Toolbar tb;
+    SharedPreferences sett;
 
     FileOutputStream os;
 
@@ -31,6 +37,18 @@ public class Dodaj extends AppCompatActivity {
         final EditText eRok = (EditText) findViewById(R.id.rok);
         final Spinner sKategoria = (Spinner) findViewById(R.id.kategorie);
         final RatingBar rOcena = (RatingBar) findViewById(R.id.ocena);
+
+        tb = (Toolbar) findViewById(R.id.tbd);
+
+        sett = getSharedPreferences("ustawienia",MODE_MULTI_PROCESS);
+        int r = sett.getInt("r", Color.red(R.color.colorPrimaryDark));
+        int g = sett.getInt("g", Color.green(R.color.colorPrimaryDark));
+        int b = sett.getInt("b", Color.blue(R.color.colorPrimaryDark));
+        tb.setBackgroundColor(Color.rgb(r,g,b));
+        int inv = 0xffffff - Color.rgb(r,g,b);
+        tb.setTitleTextColor(inv);
+        tb.setTitle("Dodaj nowy film");
+        setSupportActionBar(tb);
 
         zapisz.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,5 +97,18 @@ public class Dodaj extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, kat);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sKategoria.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        int r = sett.getInt("r", Color.red(R.color.colorPrimaryDark));
+        int g = sett.getInt("g", Color.green(R.color.colorPrimaryDark));
+        int b = sett.getInt("b", Color.blue(R.color.colorPrimaryDark));
+        tb.setBackgroundColor(Color.rgb(r,g,b));
+        int inv = 0xffffff - Color.rgb(r,g,b);
+        tb.setTitleTextColor(inv);
+        tb.setTitle("Dodaj nowy film");
+        setSupportActionBar(tb);
     }
 }

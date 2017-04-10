@@ -1,6 +1,8 @@
 package com.example.bkmiecik.android3h;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +15,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class Lista3 extends AppCompatActivity {
+
+    Toolbar tb;
+    SharedPreferences sett;
 
 
     public class myAdapter extends BaseAdapter {
@@ -53,7 +58,7 @@ public class Lista3 extends AppCompatActivity {
             TextView tv3 = (TextView) mV.findViewById(R.id.row_ocena);
             tv3.setText(String.valueOf(f.ocena));
             TextView tv4 = (TextView) mV.findViewById(R.id.row_rok);
-            tv4.setText("("+f.rok+")");
+            tv4.setText(" ("+f.rok+")");
             return mV;
         }
     }
@@ -66,7 +71,32 @@ public class Lista3 extends AppCompatActivity {
         ListView lista3 = (ListView) findViewById(R.id.lista3);
         lista3.setAdapter(adapter);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
+        sett = getSharedPreferences("ustawienia",MODE_MULTI_PROCESS);
+
+        tb = (Toolbar)findViewById(R.id.tbl2);
+
+        int r = sett.getInt("r", Color.red(R.color.colorPrimaryDark));
+        int g = sett.getInt("g", Color.green(R.color.colorPrimaryDark));
+        int b = sett.getInt("b", Color.blue(R.color.colorPrimaryDark));
+        tb.setBackgroundColor(Color.rgb(r,g,b));
+        int inv = 0xffffff - Color.rgb(r,g,b);
+        tb.setTitleTextColor(inv);
+        tb.setTitle("Lista prosta");
+        setSupportActionBar(tb);
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        int r = sett.getInt("r", Color.red(R.color.colorPrimaryDark));
+        int g = sett.getInt("g", Color.green(R.color.colorPrimaryDark));
+        int b = sett.getInt("b", Color.blue(R.color.colorPrimaryDark));
+        tb.setBackgroundColor(Color.rgb(r,g,b));
+        int inv = 0xffffff - Color.rgb(r,g,b);
+        tb.setTitleTextColor(inv);
+        tb.setTitle("Dodaj nowy film");
+        setSupportActionBar(tb);
     }
 }
