@@ -19,9 +19,9 @@
         </activity>
         <activity android:name=".Lista">
         </activity>
-        <activity android:name=".Szczegoly">
-        </activity>
         <activity android:name=".Lista3">
+        </activity>
+        <activity android:name=".Ustawienia">
         </activity>
     </application>
 

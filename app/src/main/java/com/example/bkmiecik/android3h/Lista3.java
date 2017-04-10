@@ -3,6 +3,7 @@ package com.example.bkmiecik.android3h;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,5 +65,8 @@ public class Lista3 extends AppCompatActivity {
         myAdapter adapter = new myAdapter();
         ListView lista3 = (ListView) findViewById(R.id.lista3);
         lista3.setAdapter(adapter);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
     }
 }
